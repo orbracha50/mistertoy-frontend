@@ -1,21 +1,23 @@
-const { useState, useEffect } = React
-const { useNavigate, useParams, Link } = ReactRouterDOM
 
-import { toyService } from "../services/toy.service.js"
-import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
-import { saveToy } from "../store/actions/toy.actions.js"
+import { useEffect, useState } from "react"
+import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service.js"
+import { toyService } from "../../services/toy.service.js"
+import { saveToy } from "../../store/actions/toy.action.js"
+import { Link, useNavigate, useParams } from "react-router-dom"
+
 
 export function ToyEdit() {
     const [toyToEdit, setToyToEdit] = useState(toyService.getEmptyToy())
     const navigate = useNavigate()
     const { toyId } = useParams()
-
+    console.log(toyId)
     useEffect(() => {
         if (!toyId) return
         loadToy()
     }, [])
 
     function loadToy() {
+        console.log('hi')
         toyService.getById(toyId)
             .then((toy) => setToyToEdit(toy))
             .catch((err) => {
@@ -25,9 +27,9 @@ export function ToyEdit() {
     }
 
     function handleChange({ target }) {
-        let { value, type, name: field } = target
-        value = type === 'number' ? +value : value
-        setToyToEdit((prevToy) => ({ ...prevToy, [field]: value }))
+        console.log(target)
+        let { value, name} = target
+        setToyToEdit((prevToy) => ({ ...prevToy, [name]: value }))
     }
 
     function onSaveToy(ev) {
@@ -43,35 +45,27 @@ export function ToyEdit() {
                 showErrorMsg('Cannot save toy')
             })
     }
+    if(toyToEdit=== undefined)return
     return <section className="toy-edit">
-        <h2>{toyToEdit._id ? 'Edit this toy' : 'Add a new toy'}</h2>
+        <h2>{(toyToEdit._id) ? 'Edit this toy' : 'Add a new toy'}</h2>
 
         <form onSubmit={onSaveToy}>
-            <label htmlFor="fullName">Full Name : </label>
+            <label htmlFor="name">name : </label>
             <input type="text"
-                name="fullName"
-                id="fullName"
+                name="name"
+                id="name"
                 placeholder="Enter Full name..."
-                value={toyToEdit.fullName}
+                value={toyToEdit.name}
                 onChange={handleChange}
             />
-            <label htmlFor="address">Address : </label>
+            <label htmlFor="price">Price : </label>
             <input type="text"
-                name="address"
-                id="address"
-                placeholder="Enter Address"
-                value={toyToEdit.address}
+                name="price"
+                id="price"
+                placeholder="Enter price"
+                value={toyToEdit.price}
                 onChange={handleChange}
             />
-            <label htmlFor="tel">Phone Number : </label>
-            <input type="text"
-                name="tel"
-                id="tel"
-                placeholder="Enter Phone Number"
-                value={toyToEdit.tel}
-                onChange={handleChange}
-            />
-
             <div>
                 <button>{toyToEdit._id ? 'Save' : 'Add'}</button>
                 <Link to="/toy">Cancel</Link>

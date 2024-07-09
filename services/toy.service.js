@@ -8,7 +8,7 @@ export const toyService = {
     getById,
     remove,
     save,
-    getEmptyTodo,
+    getEmptyToy,
     getDefaultFilter,
     getFilterFromSearchParams,
 }
@@ -39,7 +39,6 @@ function remove(toyId) {
 
 function save(toy) {
     if (toy._id) {
-        // TODO - updatable fields
         toy.updatedAt = Date.now()
         return storageService.put(TOY_KEY, toy)
     } else {
@@ -49,7 +48,7 @@ function save(toy) {
     }
 }
 
-function getEmptyTodo(txt = '', price = 100) {
+function getEmptyToy(txt = '', price = 0) {
     const toy = {
         name: txt,
         price,
@@ -57,6 +56,7 @@ function getEmptyTodo(txt = '', price = 100) {
         createdAt: Date.now(),
         inStock: true,
     }
+    return toy
 }
 
 function getDefaultFilter() {

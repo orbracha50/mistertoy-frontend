@@ -60,6 +60,7 @@ export function ToyIndex(){
 
     console.log(toys)
     return <section>
+        <Link to={`/toy/edit`} className="btn" >Add </Link>
         <ToyList toys={toys} onRemoveToy={onRemoveToy} onEditToy={onEditToy}/>
     </section>
 
