@@ -1,0 +1,11 @@
+.toy-box{
+    background-color: brown;
+    border-radius: 3px;
+    padding: 20px;
+}
+
+.toy-box h1{
+    position: relative;
+    font-size: 40px;
+    color: white;
+}

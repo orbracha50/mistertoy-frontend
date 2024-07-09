@@ -1,0 +1,19 @@
+ .header-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: black;
+ }
+ .header-container nav{
+    display: flex;
+    width: 30vw;
+    justify-content: space-between;
+    color: white;
+ }
+ 
+ .header-container h1{
+    color: brown;
+    font-size: 30px;
+ }
