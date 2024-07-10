@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from "react"
 import { utilService } from "../services/util.service.js"
+import { toyService } from "../services/toy.service.js"
+
+
+const toyLabels = toyService.getToyLabels()
 
 export function ToyFilter({ filterBy, onSetFilter }) {
 
@@ -12,11 +16,15 @@ export function ToyFilter({ filterBy, onSetFilter }) {
 
     function handleChange({ target }) {
         let { value, name: field, type } = target
-console.log(value)
+        if (type === 'select-multiple') {
+            console.log('target.selectedOptions:', target.selectedOptions)
+            value = Array.from(target.selectedOptions, option => option.value || [])
+            console.log('value:', value)
+        }
         value = type === 'number' ? +value : value
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
     }
-
+    const { labels } = filterByToEdit
     return (
         <section className="toy-filter">
             <h2>Toys Filter</h2>
@@ -37,17 +45,25 @@ console.log(value)
                     <option value="outOfStock">Out of stock</option>
                 </select>
 
-                <label htmlFor="labels">Choose category:</label>
-                <select name="labels" id="labels" /* value={filterByToEdit.labels} */ onChange={handleChange} multiple>
-                    <option value="onWheels">On wheels</option>
-                    <option value="boxGame">Box game</option>
-                    <option value="art">Art</option>
-                    <option value="baby">Baby</option>
-                    <option value="doll">Doll</option>
-                    <option value="puzzle">Puzzle</option>
-                    <option value="outdoor">Outdoor</option>
-                    <option value="batteryPowered">Battery Powered</option>
-                </select>
+
+                <div>
+                    <label htmlFor="labels">Choose category:</label>
+                    <select
+                        multiple
+                        name="labels"
+                        value={labels || []}
+                        onChange={handleChange}
+                    >
+                        <option value="">Labels</option>
+                        <>
+                            {toyLabels.map(label => (
+                                <option key={label} value={label}>
+                                    {label}
+                                </option>
+                            ))}
+                        </>
+                    </select>
+                </div>
                 <label htmlFor="sortBy">Sort By:</label>
                 <select value={filterByToEdit.sort} name="sortBy" onChange={handleChange} id="sortBy">
                     <option value="">Sort By</option>

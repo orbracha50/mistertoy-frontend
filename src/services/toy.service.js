@@ -4,6 +4,17 @@ import { httpService } from './http.service.js'
 
 const TOY_KEY = 'toyDB'
 const BASE_URL = 'toy/'
+
+const labels = [
+    'On wheels',
+    'Box game',
+    'Art',
+    'Baby',
+    'Doll',
+    'Puzzle',
+    'Outdoor',
+    'Battery Powered',
+]
 /* _createToys() */
 export const toyService = {
     query,
@@ -13,6 +24,7 @@ export const toyService = {
     getEmptyToy,
     getDefaultFilter,
     getFilterFromSearchParams,
+    getToyLabels
 }
 // For Debug (easy access from console):
 window.cs = toyService
@@ -50,6 +62,9 @@ function query(filterBy = {}, sortBy, pageIdx) {
              return toys
          }) */
 
+}
+function getToyLabels() {
+    return [...labels]
 }
 
 function getById(toyId) {
