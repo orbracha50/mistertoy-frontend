@@ -48,8 +48,8 @@ console.log(value)
                     <option value="outdoor">Outdoor</option>
                     <option value="batteryPowered">Battery Powered</option>
                 </select>
-                <label htmlFor="sort">Sort By:</label>
-                <select value={filterByToEdit.sort} name="sort" onChange={handleChange} id="sort">
+                <label htmlFor="sortBy">Sort By:</label>
+                <select value={filterByToEdit.sort} name="sortBy" onChange={handleChange} id="sortBy">
                     <option value="">Sort By</option>
                     <option value="name">Name</option>
                     <option value="price">price</option>

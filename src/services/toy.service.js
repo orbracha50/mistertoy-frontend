@@ -85,7 +85,7 @@ function getEmptyToy(txt = '', price = 0) {
 }
 
 function getDefaultFilter() {
-    return { name: '', stock: '', labels: [], sort: '' }
+    return { name: '', stock: '', labels: [], sortBy: '' }
 }
 
 function getFilterFromSearchParams(searchParams) {
