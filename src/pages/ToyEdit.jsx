@@ -1,9 +1,10 @@
 
 import { useEffect, useState } from "react"
-import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service.js"
-import { toyService } from "../../services/toy.service.js"
+import { showSuccessMsg,showErrorMsg } from "../services/event-bus.service.js"
+
 import { saveToy } from "../../store/actions/toy.action.js"
 import { Link, useNavigate, useParams } from "react-router-dom"
+import { toyService } from "../services/toy.service.js"
 
 
 export function ToyEdit() {
@@ -12,6 +13,7 @@ export function ToyEdit() {
     const { toyId } = useParams()
     console.log(toyId)
     useEffect(() => {
+        console.l
         if (!toyId) return
         loadToy()
     }, [])

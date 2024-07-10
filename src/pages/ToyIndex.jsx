@@ -2,16 +2,16 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadToys, removeToyOptimistic, saveToy } from '../../store/actions/toy.action'
+import { loadToys, removeToyOptimistic, saveToy, setFilterBy } from '../../store/actions/toy.action.js'
 import { ToyList } from '../cmps/ToyList.jsx'
-import { showSuccessMsg } from '../../services/event-bus.service.js'
-import { toyService } from '../../services/toy.service.js'
+import { ToyFilter } from '../cmps/ToyFilter.jsx'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 
 export function ToyIndex(){
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     useEffect(() => {
-        loadToys()
+        loadToys(filterBy)
             .catch(err => {
                 showErrorMsg('Cannot load toys!')
             })
@@ -28,17 +28,6 @@ export function ToyIndex(){
             })
             .catch(err => {
                 showErrorMsg('Cannot remove Toy')
-            })
-    }
-
-    function onAddToy() {
-        const toyToSave = toyService.getEmptyCar()
-        saveToy(toyToSave)
-            .then((savedToy) => {
-                showSuccessMsg(`Toy added (id: ${savedToy._id})`)
-            })
-            .catch(err => {
-                showErrorMsg('Cannot add Toy')
             })
     }
 
@@ -60,6 +49,7 @@ export function ToyIndex(){
 
     console.log(toys)
     return <section>
+        <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
         <Link to={`/toy/edit`} className="btn" >Add </Link>
         <ToyList toys={toys} onRemoveToy={onRemoveToy} onEditToy={onEditToy}/>
     </section>

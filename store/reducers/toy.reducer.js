@@ -1,4 +1,5 @@
-import { toyService } from "../../services/toy.service.js"
+import { toyService } from "../../src/services/toy.service.js"
+
 
 //* Toys
 export const SET_TOYS = 'SET_TOYS'
@@ -43,6 +44,8 @@ export function toyReducer(state = initialState, action = {}) {
 
       
         case SET_FILTER_BY:
+            console.log(action.filterBy)
+            console.log(initialState.filterBy)
             return {
                 ...state,
                 filterBy: { ...state.filterBy, ...action.filterBy }

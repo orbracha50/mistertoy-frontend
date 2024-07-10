@@ -5,7 +5,8 @@ export const utilService = {
     loadFromStorage,
     saveToStorage,
     animateCSS,
-    debounce
+    debounce,
+    makeLabel
 }
 
 function makeId(length = 6) {
@@ -25,6 +26,17 @@ function makeLorem(size = 100) {
     while (size > 0) {
         size--
         txt += words[Math.floor(Math.random() * words.length)]
+        if (size >= 1 ) txt += ' '
+    }
+    return txt
+}
+function makeLabel(size = 1) {
+    const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 
+        'Outdoor', 'Battery Powered'] 
+    var txt = ''
+    while (size > 0) {
+        size--
+        txt += labels[Math.floor(Math.random() * labels.length)]
         if (size >= 1 ) txt += ' '
     }
     return txt
