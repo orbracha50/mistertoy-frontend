@@ -2,6 +2,7 @@ import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 import { httpService } from './http.service.js'
 
+
 const TOY_KEY = 'toyDB'
 const BASE_URL = 'toy/'
 
@@ -24,47 +25,43 @@ export const toyService = {
     getEmptyToy,
     getDefaultFilter,
     getFilterFromSearchParams,
-    getToyLabels
+    getToyLabels,
+    mapLabels,
+    precentefStockByLabel
 }
 // For Debug (easy access from console):
 window.cs = toyService
 
 function query(filterBy = {}, sortBy, pageIdx) {
     return httpService.get(BASE_URL, { filterBy, sortBy, pageIdx })
-    /*  console.log(filterBy)
-     return storageService.query(TOY_KEY)
-         .then(toys => {
-             if (filterBy.name) {
-                 const regExp = new RegExp(filterBy.name, 'i')
-                 toys = toys.filter(toy => regExp.test(toy.name))
-             }
-             if (filterBy.stock) {
-                 if (filterBy.stock === 'All') {
-                     return toys
-                 }
-                 if (filterBy.stock === 'outOfStock') {
-                     toys = toys.filter(toy => toy.inStock === false)
-                 }
-                 if (filterBy.stock === 'inStock') {
-                     toys = toys.filter(toy => toy.inStock === true)
-                 }
-             }
-             if (filterBy.sort) {
-                 if (filterBy.sort === 'name') {
-                     toys = toys.sort((a, b) => a.name.localeCompare(b.name));
-                 } else if (filterBy.sort === 'price') {
-                     toys = toys.sort((a, b) => a.price - b.price);
-                 }
-                 else if (filterBy.sort === 'created') {
-                     toys = toys.sort((a, b) => a.createdAt - b.createdAt);
-                 }
-             }
-             return toys
-         }) */
 
 }
 function getToyLabels() {
     return [...labels]
+}
+function mapLabels(label, toys) {
+    if (toys.length === 0) return
+    var sum = 0
+    toys.forEach(toy => {
+        if (toy.labels.includes(label)) {
+            sum += toy.price
+
+        }
+    })
+    return sum
+}
+
+function precentefStockByLabel(label,toys){
+    if (toys.length === 0) return
+    console.log(toys,label)
+    var toysInstock = 0
+    toys.forEach(toy => {
+        if (toy.labels.includes(label)&& toy.inStock) {
+            toysInstock++
+            console.log(toysInstock)
+        }
+    })
+    return Math.round((toysInstock/toys.length)*100)
 }
 
 function getById(toyId) {

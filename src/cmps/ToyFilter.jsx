@@ -1,7 +1,17 @@
 import { useEffect, useRef, useState } from "react"
 import { utilService } from "../services/util.service.js"
 import { toyService } from "../services/toy.service.js"
-
+import { FormControl, InputLabel, MenuItem, OutlinedInput, Select, TextField } from "@mui/material"
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+    PaperProps: {
+        style: {
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            width: 250,
+        },
+    },
+};
 
 const toyLabels = toyService.getToyLabels()
 
@@ -28,49 +38,67 @@ export function ToyFilter({ filterBy, onSetFilter }) {
     return (
         <section className="toy-filter">
             <h2>Toys Filter</h2>
-            <form >
-                <label htmlFor="name">Full Name:</label>
-                <input type="text"
-                    id="name"
-                    name="name"
-                    placeholder="By Full name"
-                    value={filterByToEdit.name}
-                    onChange={handleChange}
-                />
-
-                <label htmlFor="stock">stock:</label>
-                <select value={filterByToEdit.stock} name="stock" onChange={handleChange} id="stock">
-                    <option value="All">All</option>
-                    <option value="inStock">In stock</option>
-                    <option value="outOfStock">Out of stock</option>
-                </select>
-
-
-                <div>
-                    <label htmlFor="labels">Choose category:</label>
-                    <select
-                        multiple
-                        name="labels"
-                        value={labels || []}
+            <form className="filter-container" >
+                <TextField placeholder="By Full name"
+                    value={filterByToEdit.name} name="name" onChange={handleChange} id="filled-basic" label="Full Name" variant="filled" />
+                <FormControl sx={{ m: 1, width: 300 }}>
+                    <InputLabel id="stock">By Stock</InputLabel>
+                    <Select
+                        name="stock"
+                        labelId="stock"
+                        id="stock"
+                        value={filterByToEdit.stock}
+                        label="stock"
                         onChange={handleChange}
                     >
-                        <option value="">Labels</option>
-                        <>
-                            {toyLabels.map(label => (
-                                <option key={label} value={label}>
-                                    {label}
-                                </option>
-                            ))}
-                        </>
-                    </select>
-                </div>
-                <label htmlFor="sortBy">Sort By:</label>
-                <select value={filterByToEdit.sort} name="sortBy" onChange={handleChange} id="sortBy">
-                    <option value="">Sort By</option>
-                    <option value="name">Name</option>
-                    <option value="price">price</option>
-                    <option value="created">created</option>
-                </select>
+                        <MenuItem value="All">All</MenuItem>
+                        <MenuItem value="inStock">In stock</MenuItem>
+                        <MenuItem value="outOfStock">Out of stock</MenuItem>
+                    </Select>
+                </FormControl>
+
+
+                <FormControl sx={{ m: 1, width: 300 }}>
+                    <InputLabel id="demo-multiple-name-label">By Label</InputLabel>
+                    <Select
+                        labelId="demo-multiple-name-label"
+                        id="demo-multiple-name"
+                        multiple
+                        name = "labels"
+                        value={filterByToEdit.labels}
+                        onChange={handleChange}
+                        input={<OutlinedInput label="Name" />}
+                        MenuProps={MenuProps}
+                    >
+                        {toyLabels.map((name) => (
+                            <MenuItem
+                                key={name}
+                                value={name}
+                                /* style={getStyles(name, personName, theme)} */
+                            >
+                                {name}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+                <FormControl sx={{
+                    width: 150,
+                }} >
+                    <InputLabel id="sortBy">Sort By</InputLabel>
+                    <Select
+                        name="sortBy"
+                        labelId="sortBy"
+                        id="sortBy"
+                        value={filterByToEdit.sort}
+                        label="sortBy"
+                        onChange={handleChange}
+                    >
+                        <MenuItem value="name">name</MenuItem>
+                        <MenuItem value="price">price</MenuItem>
+                        <MenuItem value="created">created</MenuItem>
+                    </Select>
+                </FormControl>
+
             </form>
 
         </section>

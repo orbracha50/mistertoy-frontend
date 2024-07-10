@@ -1,0 +1,11 @@
+.filter-container{
+    position: relative;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    width: 90vw;
+    border: black solid 1px;
+    justify-content: center;
+}
