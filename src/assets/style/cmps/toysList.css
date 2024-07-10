@@ -6,4 +6,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.6em;
+    height: 200px;
+}
+.toys-container li{
+    list-style: none;
 }

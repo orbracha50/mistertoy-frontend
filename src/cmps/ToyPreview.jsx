@@ -6,6 +6,6 @@ export function ToyPreview({toy}){
         <h1>{toy.name}</h1>
         <h2>{toy.price}$</h2>
 
-        <Link to={`/toy/${toy._id}`}>Details</Link>
+        <Link className="btn" to={`/toy/${toy._id}`}>Details</Link>
     </article>
 }

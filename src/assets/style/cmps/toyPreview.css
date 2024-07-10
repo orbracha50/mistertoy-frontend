@@ -2,10 +2,36 @@
     background-color: brown;
     border-radius: 3px;
     padding: 20px;
+    width: 130px;
 }
 
 .toy-box h1{
     position: relative;
     font-size: 40px;
     color: white;
+}
+.toy-box article{
+    position: absolute;
+    height: max-content;
+}
+.btn{
+    background-color: black;
+    color: white;
+    padding: 4px;
+    margin: 5px;
+    border-radius: 10px;
+}
+.delete{
+    position: relative;
+    top: -10px;
+    right: -70px;
+}
+.edit{
+    position: relative;
+    bottom: -132px;
+    right: -30px;
+}
+.btn:hover{
+    background-color: white;
+    color: black;
 }
