@@ -20,7 +20,7 @@ export function About() {
         <Button onClick={() => onHandleClick({ lat: 32.0340, lng: 34.8859 })} variant="contained">Yehud</Button>
         <div style={{ height: '50vh', width: '50vw' }}>
             <GoogleMapReact
-                bootstrapURLKeys={{ key: "AIzaSyCYoCUmd9GzcKDM8mMDSn8zr3329o_bEK4" }}
+                bootstrapURLKeys={{ key: "" }}
                 center={coords}
                 defaultZoom={zoom}
             >
@@ -35,6 +35,6 @@ export function About() {
     </section>
     );
 }
-
+/* "AIzaSyCYoCUmd9GzcKDM8mMDSn8zr3329o_bEK4" */
 // Important! Always set the container height explicitly
 
