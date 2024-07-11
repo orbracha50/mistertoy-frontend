@@ -10,6 +10,7 @@ export function ToyList({ toys, onRemoveToy, onEditToy }) {
 
                 <button className="btn delete" onClick={() => onRemoveToy(toy._id)}>x</button>
                 <Link className="btn edit" to={`edit/${toy._id}`}> Edit</Link>
+                <Link className="btn details" to={`/toy/${toy._id}`}>Details</Link>
 
             </li>
         )}

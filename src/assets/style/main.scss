@@ -1,8 +1,18 @@
+
+
+/* SETUP */
+@import 'setup/functions';
+@import 'setup/variables';
+@import 'setup/mixin';
+
+
 /* BASE */
-@import url(base/_base.scss);
+@import 'base/base';
+@import 'base/layout';
 
 /* CMP */
-@import url(cmps/-filter.scss);
-@import url(cmps/_appHeader.scss);
-@import url(cmps/_toyPreview.scss);
-@import url(cmps/_toysList.scss);
+@import 'cmps/-filter.scss';
+@import 'cmps/appHeader';
+@import 'cmps/toyPreview';
+@import 'cmps/toysList';
+

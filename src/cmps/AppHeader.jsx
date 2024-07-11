@@ -4,8 +4,7 @@ import { NavLink } from "react-router-dom"
 
 export function AppHeader() {
     return (
-        <header className="app-header">
-            <section className="header-container">
+            <section className="header-container full ">
                 <h1>Toy App</h1>
                 <nav className="app-nav">
                     <NavLink to="/" >Home</NavLink>
@@ -14,7 +13,5 @@ export function AppHeader() {
                     <NavLink to="/toy/dashboard" >Dashboard</NavLink>
                 </nav>
             </section>
-            {/* <UserMsg /> */}
-        </header>
     )
 }

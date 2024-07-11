@@ -36,8 +36,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
     }
     const { labels } = filterByToEdit
     return (
-        <section className="toy-filter">
-            <h2>Toys Filter</h2>
+        <section className="toy-filter full">
             <form className="filter-container" >
                 <TextField placeholder="By Full name"
                     value={filterByToEdit.name} name="name" onChange={handleChange} id="filled-basic" label="Full Name" variant="filled" />

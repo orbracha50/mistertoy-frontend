@@ -48,9 +48,9 @@ export function ToyIndex(){
 
 
     console.log(toys)
-    return <section>
+    return <section className='main-layout'>
         <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
-        <Link to={`/toy/edit`} className="btn" >Add </Link>
+        <Link to={`/toy/edit`} className="btn add" >Add </Link>
         <ToyList toys={toys} onRemoveToy={onRemoveToy} onEditToy={onEditToy}/>
     </section>
 

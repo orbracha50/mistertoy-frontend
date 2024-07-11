@@ -13,9 +13,9 @@ export function App() {
   return (
     <Provider store={store}>
       <Router>
-        <section>
+        <section className="main-layout">
           <AppHeader />
-          <main>
+          <main >
             <Routes>
             <Route element={<About />} path="/about" />
               <Route element={<ToyIndex />} path="/toy" />

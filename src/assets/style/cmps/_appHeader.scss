@@ -1,19 +1,27 @@
- .header-container{
-    display: flex;
-    flex-direction: row;
+
+.header-container {
     align-items: center;
-    justify-content: space-between;
-    padding: 20px;
+    justify-content:space-around;
+    padding: 10px;
     background-color: black;
- }
- .header-container nav{
-    display: flex;
-    width: 30vw;
-    justify-content: space-between;
-    color: white;
- }
- 
- .header-container h1{
-    color: brown;
-    font-size: 30px;
+    width: 100%;
+    nav {
+      grid-column: 2;
+      grid-row: 1;
+       display: flex;
+       width: max-content;
+       justify-content: space-between;
+       color: white;
+       justify-self: end;
+       gap: 25px;
+    }
+
+    h1 {
+      grid-column: 2;
+      grid-row: 1;
+       color: brown;
+       font-size: 30px;
+       width: max-content;
+    }
+
  }
