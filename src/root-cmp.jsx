@@ -4,7 +4,6 @@ import { ToyIndex } from "./pages/ToyIndex.jsx"
 import { store } from "../store/store.js"
 import { AppHeader } from "./cmps/AppHeader.jsx"
 
-import '../src/assets/style/main.css'
 import { ToyDetails } from "./pages/ToyDetails.jsx"
 import { ToyEdit } from "./pages/ToyEdit.jsx"
 import { DashBoard } from "./pages/DashBoard.jsx"
