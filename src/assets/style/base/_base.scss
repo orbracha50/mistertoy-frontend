@@ -44,6 +44,10 @@ object {
 
 a.active {
   text-decoration: underline;
+  color: brown;
+} 
+a:hover{
+  color: brown;
 }
 
 .btn {
@@ -60,4 +64,8 @@ a.active {
 .add{
   margin-top: 5px;
   justify-self: end;
+  outline: 1px solid white;
+}
+.btn:hover, .add:hover{
+  outline: 1px solid white;
 }

@@ -28,7 +28,7 @@ export function ToyDetails() {
             <h5>Price: ${toy.price}</h5>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi voluptas cumque tempore, aperiam sed dolorum rem! Nemo quidem, placeat perferendis tempora aspernatur sit, explicabo veritatis corrupti perspiciatis repellat, enim quibusdam!</p>
             {/* <Link to={`/car/edit/${toy._id}`}>Edit</Link> */}
-            <Link to={`/toy`}>Back</Link>
+            <Link className="btn" to={`/toy`}>Back</Link>
         </section>
     )
 }

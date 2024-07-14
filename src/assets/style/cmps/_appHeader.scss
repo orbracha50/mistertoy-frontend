@@ -1,8 +1,9 @@
 
 .header-container {
-    align-items: center;
-    justify-content:space-around;
-    padding: 10px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 10px  40px;
     background-color: black;
     width: 100%;
     nav {
@@ -13,7 +14,8 @@
        justify-content: space-between;
        color: white;
        justify-self: end;
-       gap: 25px;
+       gap: 45px;
+
     }
 
     h1 {
