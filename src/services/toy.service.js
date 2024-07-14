@@ -16,7 +16,7 @@ const labels = [
     'Outdoor',
     'Battery Powered',
 ]
-/* _createToys() */
+
 export const toyService = {
     query,
     getById,
@@ -108,27 +108,6 @@ function getFilterFromSearchParams(searchParams) {
     }
     return filterBy
 }
-function _createToys() {
-    let toys = utilService.loadFromStorage(TOY_KEY)
-    if (!toys || !toys.length) {
-        toys = []
-        for (let i = 0; i < 20; i++) {
 
-            toys.push(_createToy())
-        }
-        utilService.saveToStorage(TOY_KEY, toys)
-    }
-}
-
-function _createToy() {
-    const toy = {}
-    toy._id = utilService.makeId()
-    toy.name = utilService.makeLorem(1)
-    toy.price = utilService.getRandomIntInclusive(50, 500)
-    toy.labels = utilService.makeLabel()
-    toy.createdAt = toy.updatedAt = Date.now() - utilService.getRandomIntInclusive(0, 1000 * 60 * 60 * 24)
-    toy.inStock = true
-    return toy
-}
 
 

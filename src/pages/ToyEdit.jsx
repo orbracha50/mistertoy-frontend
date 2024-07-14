@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react"
-import { showSuccessMsg,showErrorMsg } from "../services/event-bus.service.js"
+import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
 
 import { saveToy } from "../../store/actions/toy.action.js"
 import { Link, useNavigate, useParams } from "react-router-dom"
@@ -18,36 +18,39 @@ export function ToyEdit() {
         loadToy()
     }, [])
 
-    function loadToy() {
-        console.log('hi')
-        toyService.getById(toyId)
-            .then((toy) => setToyToEdit(toy))
-            .catch((err) => {
-                console.log('Had issues in toy details', err)
-                navigate('/toy')
-            })
+    async function loadToy() {
+        
+        try {
+            const toy = await toyService.getById(toyId)
+            setToyToEdit(toy)
+        }
+        catch (err) {
+            console.log('Had issues in toy details', err)
+            navigate('/toy')
+        }
     }
 
     function handleChange({ target }) {
         console.log(target)
-        let { value, name} = target
+        let { value, name } = target
         setToyToEdit((prevToy) => ({ ...prevToy, [name]: value }))
     }
 
-    function onSaveToy(ev) {
+    async function onSaveToy(ev) {
         ev.preventDefault()
-        saveToy(toyToEdit)
-            .then((toy) => {
-                console.log('toy saved', toy);
-                showSuccessMsg('Toy saved!')
-                navigate('/toy')
-            })
-            .catch(err => {
-                console.log('err', err)
-                showErrorMsg('Cannot save toy')
-            })
+        
+        try {
+            const toy = await saveToy(toyToEdit)
+            console.log('toy saved', toy);
+            showSuccessMsg('Toy saved!')
+            navigate('/toy')
+        }
+        catch (err) {
+            console.log('err', err)
+            showErrorMsg('Cannot save toy')
+        }
     }
-    if(toyToEdit=== undefined)return
+    if (toyToEdit === undefined) return
     return <section className="toy-edit">
         <h2>{(toyToEdit._id) ? 'Edit this toy' : 'Add a new toy'}</h2>
 

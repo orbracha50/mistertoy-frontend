@@ -7,7 +7,7 @@ import { ToyList } from '../cmps/ToyList.jsx'
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 
-export function ToyIndex(){
+export function ToyIndex() {
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     useEffect(() => {
@@ -21,37 +21,22 @@ export function ToyIndex(){
         setFilterBy(filterBy)
     }
 
-    function onRemoveToy(carId) {
-        removeToyOptimistic(carId)
-            .then(() => {
-                showSuccessMsg('Toy removed')
-            })
-            .catch(err => {
-                showErrorMsg('Cannot remove Toy')
-            })
+    async function onRemoveToy(carId) {
+        
+        try {
+            const car = await removeToyOptimistic(carId)
+            showSuccessMsg('Toy removed')
+        }
+        catch (err) {
+            showErrorMsg('Cannot remove Toy')
+        }
     }
 
-    function onEditToy(toy) {
-        const price = +prompt('New price?')
-        const toyToSave = { ...toy, price }
-
-        saveToy(toyToSave)
-            .then((savedToy) => {
-                showSuccessMsg(`Toy updated to price: $${savedToy.price}`)
-            })
-            .catch(err => {
-                showErrorMsg('Cannot update Toy')
-            })
-    }
-
-
-
-
-    console.log(toys)
+    console.log(filterBy)
     return <section className='main-layout'>
         <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
         <Link to={`/toy/edit`} className="btn add" >Add </Link>
-        <ToyList toys={toys} onRemoveToy={onRemoveToy} onEditToy={onEditToy}/>
+        <ToyList toys={toys} onRemoveToy={onRemoveToy} />
     </section>
 
 }

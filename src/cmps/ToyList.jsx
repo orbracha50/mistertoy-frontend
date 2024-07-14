@@ -1,6 +1,6 @@
 import { ToyPreview } from "./ToyPreview.jsx";
 import { Link } from "react-router-dom";
-export function ToyList({ toys, onRemoveToy, onEditToy }) {
+export function ToyList({ toys, onRemoveToy }) {
 
     return <section className="toys-container">
 

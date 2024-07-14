@@ -63,7 +63,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                         labelId="demo-multiple-name-label"
                         id="demo-multiple-name"
                         multiple
-                        name = "labels"
+                        name="labels"
                         value={filterByToEdit.labels}
                         onChange={handleChange}
                         input={<OutlinedInput label="Name" />}
@@ -73,7 +73,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                             <MenuItem
                                 key={name}
                                 value={name}
-                                /* style={getStyles(name, personName, theme)} */
+                            /* style={getStyles(name, personName, theme)} */
                             >
                                 {name}
                             </MenuItem>
@@ -88,7 +88,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                         name="sortBy"
                         labelId="sortBy"
                         id="sortBy"
-                        value={filterByToEdit.sort}
+                        value={filterByToEdit.sortBy}
                         label="sortBy"
                         onChange={handleChange}
                     >
