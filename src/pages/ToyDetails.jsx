@@ -4,6 +4,7 @@ import { toyService } from "../services/toy.service.js"
 import { utilService } from "../services/util.service.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { reviewService } from "../services/review/review.service.remote.js"
+import { ChatApp } from "../cmps/Chat.jsx"
 
 
 
@@ -111,7 +112,6 @@ export function ToyDetails() {
     }
 
     if (!toy) return <div className="center-spinner"> <div className="lds-facebook"><div></div><div></div><div></div></div></div>
-
     return (
         <section className="toy-details">
             <h1 className="toy-name-details">Toy Name : {toy.name}</h1>
@@ -156,35 +156,8 @@ export function ToyDetails() {
 
             </section>
 
-            <section className="messages">
-                <h4>Chat </h4>
-                <ul>
-                    {toy.msgs &&
-                        toy.msgs.map((msg) => (
-                            <li key={msg.id}>
-                                By: {msg.by ? msg.by.fullname : 'Unknown User'}, {msg.txt}
-                                <button type="button" onClick={() => onRemoveMsg(msg.id)}>
-                                    ❌
-                                </button>
-                            </li>
-                        ))}
-                </ul>
-
-                <form className="login-form" onSubmit={onSaveMsg}>
-                    <input
-                        type="text"
-                        name="txt"
-                        value={msg.txt}
-                        placeholder="Enter Your Message"
-                        onChange={handleMsgChange}
-                        required
-                        autoFocus
-                    />
-                    <button>Send</button>
-                </form>
-            </section>
-
             <Link className="back-link" to="/toy">Back</Link>
+            <ChatApp toyId={toyId} />
         </section>
     )
 }
