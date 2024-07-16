@@ -37,8 +37,8 @@ export function ToyEdit() {
     }
 
     async function onSaveToy(ev) {
-        ev.preventDefault()
-        
+       
+         ev.preventDefault()
         try {
             const toy = await saveToy(toyToEdit)
             console.log('toy saved', toy);

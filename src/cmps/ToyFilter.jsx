@@ -50,9 +50,9 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                         label="stock"
                         onChange={handleChange}
                     >
-                        <MenuItem value="All">All</MenuItem>
-                        <MenuItem value="inStock">In stock</MenuItem>
-                        <MenuItem value="outOfStock">Out of stock</MenuItem>
+                        <MenuItem value="null">All</MenuItem>
+                        <MenuItem value="true">In stock</MenuItem>
+                        <MenuItem value="false">Out of stock</MenuItem>
                     </Select>
                 </FormControl>
 

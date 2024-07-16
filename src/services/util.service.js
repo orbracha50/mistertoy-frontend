@@ -6,7 +6,9 @@ export const utilService = {
     saveToStorage,
     animateCSS,
     debounce,
-    makeLabel
+    makeLabel,
+    getEmptyReview,
+    getEmptyMsg
 }
 
 function makeId(length = 6) {
@@ -26,18 +28,18 @@ function makeLorem(size = 100) {
     while (size > 0) {
         size--
         txt += words[Math.floor(Math.random() * words.length)]
-        if (size >= 1 ) txt += ' '
+        if (size >= 1) txt += ' '
     }
     return txt
 }
 function makeLabel(size = 1) {
-    const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 
-        'Outdoor', 'Battery Powered'] 
+    const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle',
+        'Outdoor', 'Battery Powered']
     var txt = ''
     while (size > 0) {
         size--
         txt += labels[Math.floor(Math.random() * labels.length)]
-        if (size >= 1 ) txt += ' '
+        if (size >= 1) txt += ' '
     }
     return txt
 }
@@ -57,7 +59,7 @@ function loadFromStorage(key) {
     return (data) ? JSON.parse(data) : undefined
 }
 
-function animateCSS(el, animation='bounce') {
+function animateCSS(el, animation = 'bounce') {
     const prefix = 'animate__'
     return new Promise((resolve, reject) => {
         const animationName = `${prefix}${animation}`
@@ -79,5 +81,16 @@ function debounce(func, timeout = 300) {
         timer = setTimeout(() => {
             func.apply(this, args)
         }, timeout)
+    }
+}
+function getEmptyReview() {
+    return {
+        txt: '',
+    }
+}
+
+function getEmptyMsg() {
+    return {
+        txt: '',
     }
 }

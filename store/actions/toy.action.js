@@ -2,7 +2,7 @@
 import { showSuccessMsg } from "../../src/services/event-bus.service.js";
 import { toyService } from "../../src/services/toy.service.js";
 
-import { ADD_TOY, TOY_UNDO, REMOVE_TOY, SET_TOYS, SET_FILTER_BY, SET_IS_LOADING, UPDATE_TOY } from "../reducers/toy.reducer.js";
+import { ADD_TOY, TOY_UNDO, REMOVE_TOY, SET_TOYS, SET_FILTER_BY, SET_IS_LOADING, UPDATE_TOY, ADD_TOY_MSG } from "../reducers/toy.reducer.js";
 import { store } from "../store.js";
 
 export function loadToys() {
@@ -57,7 +57,23 @@ export function saveToy(toy) {
             throw err
         })
 }
+export async function addCarMsg(toyId, txt) {
+    try {
+        const msg = await toyService.addCarMsg(toyId, txt)
+        store.dispatch(getCmdAddToyMsg(msg))
+        return msg
+    } catch (err) {
+        console.log('Cannot add TOY msg', err)
+        throw err
+    }
+}
 
 export function setFilterBy(filterBy) {
     store.dispatch({ type: SET_FILTER_BY, filterBy })
+}
+function getCmdAddToyMsg(msg) {
+    return {
+        type: ADD_TOY_MSG,
+        msg
+    }
 }

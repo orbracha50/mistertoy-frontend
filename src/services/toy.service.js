@@ -74,7 +74,7 @@ function remove(toyId) {
 
 function save(toy) {
     const method = toy._id ? 'put' : 'post'
-    return httpService[method](BASE_URL, toy)
+    return httpService[method](`${BASE_URL}edit`, toy)
     /* if (toy._id) {
         toy.updatedAt = Date.now()
         return storageService.put(TOY_KEY, toy)
